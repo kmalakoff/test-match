@@ -1,0 +1,58 @@
+{
+  "name": "test-match",
+  "version": "0.0.0",
+  "description": "Test string matches with cwd, include, exclude",
+  "keywords": [
+    "test",
+    "match",
+    "include",
+    "exclude",
+    "directory",
+    "file"
+  ],
+  "homepage": "https://github.com/kmalakoff/test-match",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kmalakoff/test-match.git"
+  },
+  "license": "MIT",
+  "author": "Kevin Malakoff <kmalakoff@gmail.com> (https://github.com/kmalakoff)",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "dist/cjs/index.js",
+  "types": "dist/cjs/index.d.cts",
+  "files": [
+    "dist",
+    "scripts",
+    "assets"
+  ],
+  "scripts": {
+    "build": "tsds build",
+    "format": "biome check --write --unsafe",
+    "test": "mocha --no-timeouts test/**/*.test.*",
+    "test:engines": "nvu engines tsds test:node --no-timeouts",
+    "version": "tsds version"
+  },
+  "dependencies": {
+    "is-absolute": "^1.0.0",
+    "minimatch": "^3.1.2",
+    "path-posix": "^1.0.0",
+    "unixify": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/mocha": "*",
+    "@types/node": "*"
+  },
+  "engines": {
+    "node": ">=0.8"
+  },
+  "tsds": {
+    "source": "src/index.ts"
+  }
+}
