@@ -11,6 +11,7 @@ export interface Options {
 export type Matcher = (filePath: string) => boolean;
 
 const isArray = Array.isArray || ((x) => Object.prototype.toString.call(x) === '[object Array]');
+const startsWith = (string, check) => string.lastIndexOf(check, 0) === 0;
 
 export default function createMatcher(options: Options): Matcher {
   const cwd = options.cwd === undefined ? undefined : unixify(options.cwd);
@@ -22,7 +23,7 @@ export default function createMatcher(options: Options): Matcher {
     if (cwd && !isAbsolute(pattern) && pattern.indexOf('*') !== 0) pattern = path.join(cwd, pattern);
 
     return function match(filePath) {
-      return filePath.indexOf(pattern) === 0 || minimatch(filePath, pattern);
+      return startsWith(filePath, pattern) || minimatch(filePath, pattern);
     };
   }
 
