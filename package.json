@@ -40,10 +40,10 @@
     "version": "tsds version"
   },
   "dependencies": {
-    "is-absolute": "^1.0.0",
+    "is-absolute": "*",
     "minimatch": "^3.1.2",
-    "path-posix": "^1.0.0",
-    "unixify": "^1.0.0"
+    "path-posix": "*",
+    "unixify": "*"
   },
   "devDependencies": {
     "@types/mocha": "*",
