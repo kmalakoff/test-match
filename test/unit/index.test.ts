@@ -1,5 +1,4 @@
 import assert from 'assert';
-// @ts-ignore
 import match from 'test-match';
 
 describe('match', () => {
