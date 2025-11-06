@@ -1,6 +1,6 @@
 {
   "name": "test-match",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Test string matches with cwd, include, exclude",
   "keywords": [
     "test",
