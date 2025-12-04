@@ -11,7 +11,25 @@ export interface Options {
 export type Matcher = (filePath: string) => boolean;
 
 const isArray = Array.isArray || ((x) => Object.prototype.toString.call(x) === '[object Array]');
-const startsWith = (string, check) => string.lastIndexOf(check, 0) === 0;
+
+// Case sensitivity: Windows/MSYS/Cygwin = insensitive, Unix = sensitive
+var isWindows = process.platform === 'win32' || /^(msys|cygwin)$/.test(process.env.OSTYPE);
+var nocase = isWindows;
+
+export function _setNocase(value: boolean): void {
+  nocase = value;
+}
+export function _getNocase(): boolean {
+  return nocase;
+}
+
+function startsWith(string, check) {
+  if (nocase) {
+    string = string.toLowerCase();
+    check = check.toLowerCase();
+  }
+  return string.lastIndexOf(check, 0) === 0;
+}
 
 export default function createMatcher(options: Options): Matcher {
   const cwd = options.cwd === undefined ? undefined : unixify(options.cwd);
@@ -23,7 +41,7 @@ export default function createMatcher(options: Options): Matcher {
     if (cwd && !isAbsolute(pattern) && pattern.indexOf('*') !== 0) pattern = path.join(cwd, pattern);
 
     return function match(filePath) {
-      return startsWith(filePath, pattern) || minimatch(filePath, pattern);
+      return startsWith(filePath, pattern) || minimatch(filePath, pattern, { nocase: nocase, dot: true });
     };
   }
 
