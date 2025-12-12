@@ -13,8 +13,8 @@ export type Matcher = (filePath: string) => boolean;
 const isArray = Array.isArray || ((x) => Object.prototype.toString.call(x) === '[object Array]');
 
 // Case sensitivity: Windows/MSYS/Cygwin = insensitive, Unix = sensitive
-var isWindows = process.platform === 'win32' || /^(msys|cygwin)$/.test(process.env.OSTYPE);
-var nocase = isWindows;
+const isWindows = process.platform === 'win32' || /^(msys|cygwin)$/.test(process.env.OSTYPE);
+let nocase = isWindows;
 
 export function _setNocase(value: boolean): void {
   nocase = value;
