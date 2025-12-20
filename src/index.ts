@@ -23,7 +23,7 @@ export function _getNocase(): boolean {
   return nocase;
 }
 
-function startsWith(string, check) {
+function stringStartsWith(string, check) {
   if (nocase) {
     string = string.toLowerCase();
     check = check.toLowerCase();
@@ -41,7 +41,7 @@ export default function createMatcher(options: Options): Matcher {
     if (cwd && !isAbsolute(pattern) && pattern.indexOf('*') !== 0) pattern = path.join(cwd, pattern);
 
     return function match(filePath) {
-      return startsWith(filePath, pattern) || minimatch(filePath, pattern, { nocase: nocase, dot: true });
+      return stringStartsWith(filePath, pattern) || minimatch(filePath, pattern, { nocase: nocase, dot: true });
     };
   }
 
