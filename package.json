@@ -48,8 +48,11 @@
     "unixify": "^1.0.0"
   },
   "devDependencies": {
+    "@types/is-absolute": "^1.0.2",
+    "@types/minimatch": "^6.0.0",
     "@types/mocha": "*",
     "@types/node": "*",
+    "@types/unixify": "^1.0.2",
     "node-version-use": "*",
     "ts-dev-stack": "*",
     "tsds-config": "*"
